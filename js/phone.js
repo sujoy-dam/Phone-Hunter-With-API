@@ -1,23 +1,39 @@
 //  console.log('connected')
 const loadAllPhone = async () => {
+    // console.log(status)
     const res = await fetch('https://openapi.programming-hero.com/api/phones?search=iphone')
     const data = await res.json()
+    // 
     displayAllPhone(data.data)
 }
-const displayAllPhone = (phones) => {
-    // console.log(phones)
-    // if(phones.length > 5){
-    //     phones.slice(0,5)
-    // }
-    document.getElementById('spinner').classList.add('hidden')
+const displayAllPhone = (phones, isShowAll) => {
+    console.log(isShowAll)
+    // document.getElementById('spinner2').classList.add('hidden')
 
     const phonesContainer = document.getElementById('phones-container')
+
+    const showAllContainer = document.getElementById('show-all-container')
+    if (phones.length > 12 && !isShowAll) {
+        showAllContainer.classList.remove('hidden')
+    }
+    else {
+        showAllContainer.classList.add('hidden')
+
+    }
+
+
+    if(!isShowAll){
+
+        phones = phones.slice(0, 5)
+    }
+
     if (phones.length === 0) {
         phonesContainer.innerHTML = `
             <h1 class="text-8xl font-extrabold text-violet-600 text-center">NO phones is available</h1>
         `
         phonesContainer.classList.remove('grid')
         phonesContainer.classList.add('min-h-100vh')
+        document.getElementById('spinner').classList.add('hidden')
         return;
     }
     phonesContainer.classList.add('grid')
@@ -26,8 +42,9 @@ const displayAllPhone = (phones) => {
         // console.log(phone)
         const { brand, image, phone_name, slug } = phone
         const div = document.createElement('div')
+        // div.classList.add)
         div.innerHTML = `
-            <div class="card bg-base-100 shadow-xl">
+            <div class="card bg-base-100 shadow-xl h-[450px]">
                 <figure class="px-5 pt-10">
                     <img
                     src=${image}
@@ -46,23 +63,36 @@ const displayAllPhone = (phones) => {
         `
         phonesContainer.append(div)
     });
-
+    document.getElementById('spinner').classList.add('hidden')
+    document.getElementById('spinner2').classList.add('hidden')
+    // showAllContainer.classList.add('hidden')
 
 }
-document.getElementById('search').addEventListener('click', function () {
+
+
+
+const handleShowAll = () => {
+    console.log('handle show all')
+    // document.getElementById('show-all-container').classList.add('hidden')
+    document.getElementById('spinner2').classList.remove('hidden')
+    handleSearch(true)
+
+    // loadAllPhone(true)
+}
+const handleSearch= (isShowAll)=> {
+    document.getElementById('spinner').classList.remove('hidden')
     const searchField = document.getElementById('input').value;
     console.log(searchField)
-    loadSearchPhones(searchField)
-    document.getElementById('spinner').classList.remove('hidden')
+    loadSearchPhones(searchField,isShowAll)
 
-})
-const loadSearchPhones = async (phoneName) => {
+}
+const loadSearchPhones = async (phoneName, isShowAll) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${phoneName}`)
     const data = await res.json()
     console.log(data.data)
     setTimeout(() => {
 
-        displayAllPhone(data.data)
+        displayAllPhone(data.data, isShowAll)
     }, 2000)
 }
 
@@ -91,9 +121,9 @@ const displayModal = (details) => {
                     <p><span class="font-lg font-bold">Chipset:</span> ${mainFeatures.chipSet}</p>
                     <p><span class="font-lg font-bold">Memory:</span> ${mainFeatures.memory}</p>
                     <p><span class="font-lg font-bold">Slug:</span> ${slug}</p>
-                    <p><span class="font-lg font-bold">Release Data:</span> ${releaseData?releaseData:'Not available'}</p>
+                    <p><span class="font-lg font-bold">Release Data:</span> ${releaseData ? releaseData : 'Not available'}</p>
                     <p><span class="font-lg font-bold">Brand:</span> ${brand}</p>
-                    <p><span class="font-lg font-bold">GPS:</span> ${others?.GPS? others.GPS : "Not available"}</p>
+                    <p><span class="font-lg font-bold">GPS:</span> ${others?.GPS ? others.GPS : "Not available"}</p>
                     <p><span class="py-4">Press ESC key or click the button below to close</p>
                 </div>
                 <div class="modal-action">
@@ -104,17 +134,10 @@ const displayModal = (details) => {
                 </div>
             </div>
         </dialog>
-    
     `
-    // modalBox.append(div)
 }
-
-
-// const searchLoadPhones = ()=>{
-//     const res = fetch(`https://openapi.programming-hero.com/api/phones?search=iphone`)
-// }
 
 
 
 // displayAllPhone()
-loadAllPhone()
+// loadAllPhone()
