@@ -36,7 +36,7 @@ const displayAllPhone = (phones) => {
                 </figure>
                 <div class="card-body items-center text-center">
                     <h2 class="card-title font-bold text-2xl">${phone_name}</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
+                    <p>${slug}</p>
                     <div class="card-actions">
                         <button class="btn btn-primary" onclick="loadDetails('${slug}')">Show Details</button>
                     </div>

@@ -5,19 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phone Hunter With API</title>
+
+    <!-- dysiUi link  -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.11/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- font awsome link-->
+    <script src="https://kit.fontawesome.com/8da0e75a17.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <header class="bg-[#0D6EFD0D] mb-20">
+    <header class="bg-[#0D6EFD0D] mb-20 px-5 lg:px-0">
         <nav class="container mx-auto flex justify-between pt-10">
             <h1 class="font-bold text-2xl">Hot Gadgets</h1>
             <button class="btn btn-primary text-xl font-medium text-white">Sign Up</button>
         </nav>
         <section class="container mx-auto mt-12">
             <div class="flex flex-col items-center">
-                <h1 class="text-6xl font-bold">Apple Iphone 13 Pro Max</h1>
+                <h1 class="text-4xl text-center lg:text-6xl font-bold">Apple Iphone 13 Pro Max</h1>
                 <p class="max-w-2xl text-center my-6">There are many variations of passages of Lorem Ipsum available,
                     but the majority have suffered alteration in some form, by injected humou.</p>
                 <button class="btn btn-primary text-xl font-medium text-white mb-20">Buy Now</button>
@@ -26,9 +31,9 @@
         </section>
     </header>
     <main class="container mx-auto">
-        <div class="flex flex-col items-center border-2 mb-10">
-            <h1 class="text-4xl font-bold">Search Your Phone</h1>
-            <div class="flex gap-2 mt-8 border-2">
+        <div class="flex flex-col items-center mb-10 px-4 lg:px-0">
+            <h1 class="text-2xl lg:text-4xl font-bold">Search Your Phone</h1>
+            <div class="flex flex-col gap-2 mt-8">
                 <label class="input input-bordered flex items-center gap-2 p-5">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                         class="h-6 w-6 opacity-70">
@@ -36,7 +41,7 @@
                             d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
                             clip-rule="evenodd" />
                     </svg>
-                    <input id="input" type="text" class="grow text-2xl w-96" placeholder="Search" />
+                    <input id="input" type="text" class="grow text-2xl lg:w-96" placeholder="Search" />
                 </label>
                 <button id="search" class="btn btn-primary font-bold">Search</button>
             </div>
@@ -44,14 +49,65 @@
         <div class="flex justify-center hidden" id="spinner">
             <span class="loading loading-spinner loading-lg"></span>
         </div>
-        <div id="phones-container" class="grid grid-cols-1 lg:grid-cols-4 gap-4 min-h-screen">
+        <div id="phones-container" class="grid grid-cols-1 lg:grid-cols-4 gap-4 min-h-screen px-4 lg:px-0">
 
         </div>
-        <div class="flex justify-center">
+        <div class="flex justify-center my-5">
             <button class="btn btn-primary">Show All</button>
         </div>
     </main>
-    <footer></footer>
+    <footer class="bg-[#0D6EFD0D] py-20 px-4 lg:px-0">
+        <div class="container mx-auto lg:flex lg:justify-between text-center lg:text-left border-b-2 pb-10">
+            <div>
+                <h1 class="text-5xl font-medium mb-5">Hot Gadgets</h1>
+                <p>You can definitely work.</p>
+            </div>
+            <div class="flex items-center gap-20">
+                <div class="space-x-4 hidden lg:block">
+                    <i class="fa-brands fa-square-facebook"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-square-instagram"></i>
+                </div>
+                <div class="flex flex-col items-center lg:justify-end">
+                    <button class="btn btn-primary font-bold">Join Premium</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer lg:flex justify-between grid grid-cols-2 text-lg container mx-auto pt-10">
+            <nav>
+                <h6 class="footer-title">Product</h6>
+                <!-- <a class="link link-hover">Product</a> -->
+                <a class="link link-hover">Browse jobs</a>
+                <a class="link link-hover">Remote jobs</a>
+                <a class="link link-hover">Startup jobs</a>
+                <a class="link link-hover">Company jobs</a>
+            </nav>
+            <nav>
+                <h6 class="footer-title">Popular</h6>
+                <!-- <a class="link link-hover">Popular</a> -->
+                <a class="link link-hover">UI/UX Design</a>
+                <a class="link link-hover">Product Design</a>
+                <a class="link link-hover">Back-End Developer</a>
+                <a class="link link-hover">Front-End Developer</a>
+            </nav>
+            <nav>
+                <h6 class="footer-title">Resource</h6>
+                <!-- <a class="link link-hover">Resource</a> -->
+                <a class="link link-hover">Faq</a>
+                <a class="link link-hover">Support</a>
+                <a class="link link-hover">Privacy policy</a>
+                <a class="link link-hover">Terms of Services</a>
+            </nav>
+            <nav>
+                <h6 class="footer-title">Company</h6>
+                <!-- <a class="link link-hover">Company</a> -->
+                <a class="link link-hover">About Us</a>
+                <a class="link link-hover">Contact Us</a>
+                <a class="link link-hover">Career Tips</a>
+                <a class="link link-hover">Careers</a>
+            </nav>    
+        </div>
+    </footer>
 
 
 
@@ -59,7 +115,7 @@
     <!-- Open the modal using ID.showModal() method -->
     <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
     <div id="modal">
-        
+
     </div>
 
     <script src="./js/phone.js"></script>
