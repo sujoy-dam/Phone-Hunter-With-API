@@ -6,7 +6,18 @@ const loadAllPhone = async () => {
 }
 const displayAllPhone = (phones) => {
     // console.log(phones)
+    document.getElementById('spinner').classList.add('hidden')
+
     const phonesContainer = document.getElementById('phones-container')
+    if(phones.length ===0){
+        phonesContainer.innerHTML=`
+            <h1 class="text-8xl font-extrabold text-violet-600 text-center">NO phones is available</h1>
+        `
+        phonesContainer.classList.remove('grid')
+        phonesContainer.classList.add('min-h-100vh')
+        return;
+    }
+    phonesContainer.classList.add('grid')
     phonesContainer.innerHTML = ""
     phones.forEach(phone => {
         // console.log(phone)
@@ -39,13 +50,17 @@ document.getElementById('search').addEventListener('click', function () {
     const searchField = document.getElementById('input').value;
     console.log(searchField)
     loadSearchPhones(searchField)
+    document.getElementById('spinner').classList.remove('hidden')
 
 })
 const loadSearchPhones = async (phoneName) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${phoneName}`)
     const data = await res.json()
     console.log(data.data)
-    displayAllPhone(data.data)
+    setTimeout(()=>{
+
+        displayAllPhone(data.data)
+    }, 2000)
 }
 
 const displaySearchPhones =()=>{
@@ -62,5 +77,5 @@ const displaySearchPhones =()=>{
 
 
 
-
+// displayAllPhone()
 loadAllPhone()
