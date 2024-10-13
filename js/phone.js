@@ -1,15 +1,16 @@
-console.log('connected')
+//  console.log('connected')
 const loadAllPhone = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/phones?search=iphone')
     const data = await res.json()
     displayAllPhone(data.data)
 }
 const displayAllPhone = (phones) => {
-    console.log(phones)
+    // console.log(phones)
     const phonesContainer = document.getElementById('phones-container')
+    phonesContainer.innerHTML = ""
     phones.forEach(phone => {
-        console.log(phone)
-        const { brand, image, phone_name } = phone
+        // console.log(phone)
+        const { brand, image, phone_name, slug } = phone
         const div = document.createElement('div')
         div.innerHTML = `
             <div class="card bg-base-100 shadow-xl">
@@ -23,7 +24,7 @@ const displayAllPhone = (phones) => {
                     <h2 class="card-title font-bold text-2xl">${phone_name}</h2>
                     <p>If a dog chews shoes whose shoes does he choose?</p>
                     <div class="card-actions">
-                        <button class="btn btn-primary">Show Details</button>
+                        <button class="btn btn-primary" id="details">Show Details</button>
                     </div>
                 </div>
             </div>
@@ -34,8 +35,25 @@ const displayAllPhone = (phones) => {
 
 
 }
+document.getElementById('search').addEventListener('click', function () {
+    const searchField = document.getElementById('input').value;
+    console.log(searchField)
+    loadSearchPhones(searchField)
 
-const loadDetails = ()=>
+})
+const loadSearchPhones = async (phoneName) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${phoneName}`)
+    const data = await res.json()
+    console.log(data.data)
+    displayAllPhone(data.data)
+}
+
+const displaySearchPhones =()=>{
+
+}
+// const loadDetails = ()=>{
+
+// }
 
 
 // const searchLoadPhones = ()=>{
