@@ -1,14 +1,15 @@
-//  console.log('connected')
-const loadAllPhone = async () => {
-    // console.log(status)
+
+const loadAllPhone = async (isShowAll) => {
+
     const res = await fetch('https://openapi.programming-hero.com/api/phones?search=iphone')
     const data = await res.json()
-    // 
-    displayAllPhone(data.data)
+
+    displayAllPhone(data.data, isShowAll)
 }
 const displayAllPhone = (phones, isShowAll) => {
     console.log(isShowAll)
-    // document.getElementById('spinner2').classList.add('hidden')
+
+    
 
     const phonesContainer = document.getElementById('phones-container')
 
@@ -42,7 +43,7 @@ const displayAllPhone = (phones, isShowAll) => {
         // console.log(phone)
         const { brand, image, phone_name, slug } = phone
         const div = document.createElement('div')
-        // div.classList.add)
+    
         div.innerHTML = `
             <div class="card bg-base-100 shadow-xl h-[450px]">
                 <figure class="px-5 pt-10">
@@ -65,7 +66,8 @@ const displayAllPhone = (phones, isShowAll) => {
     });
     document.getElementById('spinner').classList.add('hidden')
     document.getElementById('spinner2').classList.add('hidden')
-    // showAllContainer.classList.add('hidden')
+    
+    
 
 }
 
@@ -75,9 +77,16 @@ const handleShowAll = () => {
     console.log('handle show all')
     // document.getElementById('show-all-container').classList.add('hidden')
     document.getElementById('spinner2').classList.remove('hidden')
-    handleSearch(true)
 
-    // loadAllPhone(true)
+    const searchField = document.getElementById('input').value;
+
+    if(searchField){
+        handleSearch(true)
+        return;
+    }
+    
+
+    loadAllPhone(true)
 }
 const handleSearch= (isShowAll)=> {
     document.getElementById('spinner').classList.remove('hidden')
@@ -96,9 +105,6 @@ const loadSearchPhones = async (phoneName, isShowAll) => {
     }, 2000)
 }
 
-// const displaySearchPhones =()=>{
-//     console.log('connected')
-// }
 const loadDetails = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
     const data = await res.json()
@@ -140,4 +146,4 @@ const displayModal = (details) => {
 
 
 // displayAllPhone()
-// loadAllPhone()
+loadAllPhone()
